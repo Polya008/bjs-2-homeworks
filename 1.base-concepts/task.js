@@ -1,13 +1,69 @@
-function solveEquation(a, b, c) {
-  let arr;
-  // код для задачи №1 писать здесь
-  return arr; // array
+'use strict';
+
+function solveEquation(a,b,c){
+  let x;
+  let result = [];
+  let discriminant = b ** 2 - 4 * a * c;
+  
+  if(discriminant < 0){
+    return result;
+  } else if(discriminant === 0){
+    x = -b / (2*a);
+    result.push(x);
+    return result;
+  } else {
+    x = (-b + Math.sqrt(discriminant) )/(2*a);
+    result.push(x);
+    x = (-b - Math.sqrt(discriminant) )/(2*a);
+    result.push(x);
+    return result;
+  }
 }
 
+
+
+
+
+
 function calculateTotalMortgage(percent, contribution, amount, date) {
-  let totalAmount;
+let totalAmount;
 
-  // код для задачи №2 писать здесь
+let percentNumber = Number(percent);
+let contributionNumber = Number(contribution);
+let amountNumber = Number(amount);
 
+let creditSum = amountNumber - contributionNumber;
+
+if(typeof percentNumber != 'number'){
+  return (`Параметр "Процентная ставка" содержит неправильное значение ${percentNumber}`);
+} else if(typeof contributionNumber != 'number'){
+  return (`Параметр "Сумма первоначального взноса" содержит неправильное значение ${contributionNumber}`);
+} else if(typeof amountNumber != 'number'){
+  return (`Параметр "Сумма кредита" содержит неправильное значение ${amountNumber}`);
+}
+
+
+//вычисление кол-ва месяцев
+let dayToday =  new Date();
+/*let dayEnd = new Date(11, 3, 2040);*/
+let diffirenceInMonth;
+
+function creditPeriod(a,b) {
+const oneMonth = (1000 * 60 * 60 * 30) / 12;
+a.parse;
+b.parse;
+let diffirence = b.getTime() - a.getTime();
+diffirenceInMonth = Math.round(diffirence / oneMonth);
+return diffirenceInMonth;
+}
+creditPeriod(dayToday, date)
+  
+
+let P = (percentNumber / 100) / 12;
+totalSum = creditSum * (P + (P / (((1 + P) ^ diffirenceInMonth)- 1 )));
+totalSum.toFixed(2);
+
+totalAmount = Number(totalSum);
+  console.log(totalAmount);
   return totalAmount;
 }
