@@ -35,17 +35,16 @@ let amountNumber = Number(amount);
 let creditSum = amountNumber - contributionNumber;
 
 if(typeof percentNumber != 'number'){
-  return (`Параметр "Процентная ставка" содержит неправильное значение ${percentNumber}`);
+  return (`Параметр ${placeholder} содержит неправильное значение ${percentNumber}`);
 } else if(typeof contributionNumber != 'number'){
-  return (`Параметр "Сумма первоначального взноса" содержит неправильное значение ${contributionNumber}`);
+  return (`Параметр ${placeholder} содержит неправильное значение ${contributionNumber}`);
 } else if(typeof amountNumber != 'number'){
-  return (`Параметр "Сумма кредита" содержит неправильное значение ${amountNumber}`);
+  return (`Параметр ${placeholder} содержит неправильное значение ${amountNumber}`);
 }
 
 
 //вычисление кол-ва месяцев
 let dayToday =  new Date();
-/*let dayEnd = new Date(11, 3, 2040);*/
 let diffirenceInMonth;
 
 function creditPeriod(a,b) {
@@ -60,7 +59,7 @@ creditPeriod(dayToday, date)
   
 
 let P = (percentNumber / 100) / 12;
-totalSum = creditSum * (P + (P / (((1 + P) ^ diffirenceInMonth)- 1 )));
+let totalSum = creditSum * (P + (P / (((1 + P) ^ diffirenceInMonth)- 1 )));
 totalSum.toFixed(2);
 
 totalAmount = Number(totalSum);
