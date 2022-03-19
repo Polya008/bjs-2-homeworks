@@ -29,14 +29,23 @@ function makeWork(arrOfArr, func) {
   let max;
   for(let i = 0; i < arrOfArr.length; i++){
   let oneArr = arrOfArr[i];
-  return oneArr;
+  
   let max = [];
   max =  func(oneArr);
-    }
+  }
   return max;
 }
 
 // Задание 3
 function worker2(arr) {
-  // Ваш код
-}
+  let min = arr[0];
+  let max = min;
+  for(let i = 0; i < arr.length; i++){
+  if(arr[i] > max){
+    max = arr[i];
+  } else if(arr[i] < min){
+    min = arr[i];
+ 
+  let difference = max - min;
+  return Math.abs(difference);
+ }
