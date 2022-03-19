@@ -29,31 +29,31 @@ let amountNumber = parseInt(amount);
 let creditSum = amountNumber - contributionNumber;
 
 if(Number.isNaN(percentNumber)){
-  return (`Параметр ${percentNumber} содержит неправильное значение ${percentNumber}`);
+  return (`Параметр "Процентная ставка" содержит неправильное значение "${percent}"`);
 } else if(Number.isNaN(contributionNumber)){
-  return (`Параметр ${contributionNumber} содержит неправильное значение ${contributionNumber}`);
+  return `Параметр "Начальный взнос" содержит неправильное значение "${contribution}"`;
 } else if(Number.isNaN(amountNumber)){
-  return (`Параметр ${amountNumber} содержит неправильное значение ${amountNumber}`);
+  return `Параметр "Общая стоимость" содержит неправильное значение "${amount}"`;
 }
 
 
 //вычисление кол-ва месяцев
-let dayToday =  Date.now();
+let dayToday =  Date.now();//1647721587970
 let diffirenceInMonth;
 
 function creditPeriod(a,b) {
-let currentMonth = new Date().getMonth();
-let currentYear = new Date().getFullYear();
-let diffirenceInYears = date.getFullYear - currentYear;
-let diffirenceInMonth = diffirenceInYears * 12 - currentMonth + b.getMonth();
+let currentMonth = new Date().getMonth();//2
+let currentYear = new Date().getFullYear();//2022
+let diffirenceInYears = date.getFullYear() - currentYear;
+let diffirenceInMonth = diffirenceInYears * 12 + currentMonth ;
 return  diffirenceInMonth;
 }
 creditPeriod(dayToday, date)
   
 
-let P = (percentNumber / 100) * 12;
-let totalSum = creditSum * (P + (P / (((1 + P) ^ diffirenceInMonth)- 1 )));
-
+let P = percentNumber / 12 / 100;
+let sumFoEveryMonth = creditSum * (P + (P / (((1 + P) ^ diffirenceInMonth)- 1 )));
+let totalSum = sumFoEveryMonth * diffirenceInMonth;
 totalSum.toFixed(2);
 totalAmount = parseFloat(totalSum);
 
