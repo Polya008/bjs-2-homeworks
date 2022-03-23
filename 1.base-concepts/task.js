@@ -16,9 +16,6 @@ function solveEquation(a,b,c){
 
 
 
-
-
-
 function calculateTotalMortgage(percent, contribution, amount, date) {
 let totalAmount;
 
@@ -39,24 +36,20 @@ if(Number.isNaN(percentNumber)){
 
 //вычисление кол-ва месяцев
 let dayToday =  Date.now();//1647721587970
+let dayEnd = date.getTime();//1678579200000
 let diffirenceInMonth;
 
 function creditPeriod(a,b) {
-let currentMonth = new Date().getMonth();//2
-let currentYear = new Date().getFullYear();//2022
-let diffirenceInYears = date.getFullYear() - currentYear;
-let diffirenceInMonth = diffirenceInYears * 12 + currentMonth ;
+diffirenceInMonth = Math.round((dayEnd - dayToday) * (3.8 * (10 ** -10)));
 return  diffirenceInMonth;
 }
-creditPeriod(dayToday, date)
+creditPeriod(dayToday, dayEnd)
   
-
 let P = percentNumber / 12 / 100;
-let sumFoEveryMonth = creditSum * (P + (P / (((1 + P) ^ diffirenceInMonth)- 1 )));
+let sumFoEveryMonth = creditSum * (P + (P / (((1 + P) ** diffirenceInMonth)- 1 ))); 
 let totalSum = sumFoEveryMonth * diffirenceInMonth;
-totalSum.toFixed(2);
-totalAmount = parseFloat(totalSum);
+let totalSumString = totalSum.toFixed(2);
+totalAmount = parseFloat(totalSumString);
 
-  console.log(totalAmount);
-  return totalAmount;
+return totalAmount;
 }
