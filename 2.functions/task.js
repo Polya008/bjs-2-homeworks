@@ -26,26 +26,29 @@ function worker(arr) {
 }
 
 function makeWork(arrOfArr, func) {
-  let max;
+  let max = func(arrOfArr[0]);
+
   for(let i = 0; i < arrOfArr.length; i++){
-  let oneArr = arrOfArr[i];
-  
-  let max = [];
-  max =  func(oneArr);
+   max = func(arrOfArr[i]);
+
+  if(max > arrOfArr[i]) {
+    max = arrOfArr[i];
   }
   return max;
+}
 }
 
 // Задание 3
 function worker2(arr) {
-  let min = arr[0];
-  let max = min;
+  let min2 = arr[0];
+  let max2 = min2;
   for(let i = 0; i < arr.length; i++){
-  if(arr[i] > max){
-    max = arr[i];
-  } else if(arr[i] < min){
-    min = arr[i];
- 
-  let difference = max - min;
-  return Math.abs(difference);
+  if(arr[i] > max2){
+    max2 === arr[i];
+  } else if(arr[i] < min2){
+    min2 === arr[i];
  }
+  return Math.abs(max2 - min2);
+ }
+
+}
