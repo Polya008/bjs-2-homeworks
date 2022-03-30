@@ -13,19 +13,19 @@ Student.prototype.setSubject = function(subjectName) {
   this.subjectName = subjectName;
 }
 
-Student.prototype.addMark = function([marks]){  
+Student.prototype.addMark = function(mark){  
     if(this.marks === undefined){ 
-    this.marks = marks[0];
+     this.marks.push(mark);
     } else {
-    this.marks = marks.push;
+    this.marks = marks.push(mark);
     }
 }
 
-Student.prototype.addMarks = function([...marks]){  
+Student.prototype.addMarks = function(...mark){  
     this.marks = marks.push;
   }  
 
-Student.prototype.getAverage = function([...marks]){  
+Student.prototype.getAverage = function(...marks){  
    let sum = 0;
    for(let i = 0; i < marks.length; i++){
     sum +=  marks[i];
