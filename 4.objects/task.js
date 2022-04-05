@@ -30,8 +30,7 @@ Student.prototype.getAverage = function(marks){
    for(let i = 0; i < this.marks.length; i++){
     sum += this.marks[i];
    }
- let getAverage = sum / this.marks.length;
- return Math.floor(getAverage * 10000) / 10000;
+ return sum / this.marks.length;
   }
 
 Student.prototype.exclude = function(reason) {
