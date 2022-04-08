@@ -80,16 +80,38 @@ class Library {
   } else {
     return 'null';
   }
-}*/
+}
+
+
+  findBookBy(type, value) {
+  for(let findType in this.books){
+    if (findType  && value === this.name || value === this.releaseDate){
+    return book;
+   } else {
+    return 'null'
+  }
+}
+}
+
+*/
 
 findBookBy(type, value) {
+
+  if(this.books.includes(value) && this.Book.hasOwnProperty(type)){
+    return this.book;
+   } else {
+    return 'null';
+  }
+
+
+/*  
   for(let findType in this.books){
     if (findType === this.type && this.books.type === value){
     return book;
    } else {
     return 'null'
   }
-}
+}*/
 }
 
 giveBookByName(bookName) {
