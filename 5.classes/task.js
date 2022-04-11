@@ -114,12 +114,8 @@ findBookBy(type, value) {
 }
 
 giveBookByName(bookName) {
-  let findBook =  this.books.findIndex(bookName);
-  if(findBook != -1) {
-    return this.books.splice(findBook,1);
-  } else {
-    return null;
-  }
+this.books.findIndex((item) => this.books.splice(item,1));
+//не могу здесь сообразить как добавить условную конструкцию, раз у меня все вычисления в одну строку
 }
 
 }
