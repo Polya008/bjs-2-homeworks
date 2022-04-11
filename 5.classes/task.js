@@ -96,7 +96,6 @@ class Library {
 */
 
 findBookBy(type, value) {
-
   if(this.books.includes(value) && this.Book.hasOwnProperty(type)){
     return this.book;
    } else {
@@ -130,26 +129,23 @@ class Student {
    this.name = name;
    this.surname = surname;
  }
+
  addMark(mark, discipline){
-   this.mark = mark.push;
-   this.discipline = discipline.push;
+   this.mark = mark.push(mark);
+   this.discipline = discipline.push(discipline);
    if(mark > 5) {
     return 'Ошибка, оценка должна быть числом от 1 до 5';
   }
 }
 
 getAverageBySubject(value){
-  if(discipline.filter(value)){
-   let sum = 0;
-   let arrOfMarks = discipline.filter(value);
-   for(let i = 0; i < arrOfMarks.length; i++){
-     sum += discipline.filter(value)[i];
-   }
-   let getAverageBySubject = sum / arrOfMarks.length;
-   return `Средний балл по предмету ${discipline} : ${getAverageBySubject}`;
- }
- else if(discipline.filter(value) = false) {
+  let sum = (this.discipline.filter((item) => item === value)).reduce((a,b) => a + b, x = 0);
+  let getAverageBySubject = sum / this.discipline.length;
+   return `Средний балл по предмету ${value} : ${getAverageBySubject}`;
+ 
+ if(this.discipline.some((value) => value === undefined)) {
   return 'Несуществующий предмет';
 }
+
 }
 }
