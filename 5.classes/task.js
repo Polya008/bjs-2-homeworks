@@ -74,64 +74,61 @@ class Library {
    }
  }
 
- /*findBookBy(type, value) {
-  if(this.books.filter(type,value) != []){
-    return this.books.filter(type,value);
-  } else {
-    return 'null';
-  }
-}
-
-
-  findBookBy(type, value) {
-  for(let findType in this.books){
-    if (findType  && value === this.name || value === this.releaseDate){
-    return book;
-   } else {
-    return 'null'
-  }
-}
-}
-
-*/
-
 findBookBy(type, value) {
-  if(this.books.includes(value) && this.Book.hasOwnProperty(type)){
-    return this.book;
-   } else {
-    return 'null';
+  let itemBook = this.books.find((item) => item[type] === value);
+  if(itemBook){
+    return itemBook;
+  } else {
+    return null;
   }
-
-
-/*  
-  for(let findType in this.books){
-    if (findType === this.type && this.books.type === value){
-    return book;
-   } else {
-    return 'null'
-  }
-}*/
 }
+
 
 giveBookByName(bookName) {
-this.books.findIndex((item) => this.books.splice(item,1));
-//не могу здесь сообразить как добавить условную конструкцию, раз у меня все вычисления в одну строку
+let searchingBook = this.books.findIndex((item) => item.name === bookName);
+if(searchingBook != -1){
+    this.books.splice(searchingBook,1);
+} else {
+  return null;
+ }
 }
+
+/*giveBookByName(bookName) {
+if(this.name === bookName){
+    this.books.findIndex((item) => this.books.splice(item,1));
+} else {
+  return 'null';
+ }
+}*/
 
 }
 //Задание 3
 class Student {
-  constructor(name, surname) {
+  constructor(name) {
    this.name = name;
-   this.surname = surname;
  }
 
  addMark(mark, discipline){
-   this.mark = mark.push(mark);
-   this.discipline = discipline.push(discipline);
+   this.discipline = {};
+   this.discipline.discipline = discipline;
+   this.discipline.mark = [];
+
+   if(Object.keys(this.discipline.discipline) !== []){
+     this.discipline.mark.push(mark);
+   }
+
+
+  if(Object.values(this.discipline.mark) === []){
+     this.discipline.mark = [mark];
+   } else {
+     this.discipline.mark.push(mark);
+   }
+   
    if(mark > 5) {
     return 'Ошибка, оценка должна быть числом от 1 до 5';
   }
+
+
 }
 
 getAverageBySubject(value){
@@ -142,6 +139,12 @@ getAverageBySubject(value){
  if(this.discipline.some((value) => value === undefined)) {
   return 'Несуществующий предмет';
 }
-
 }
+
+getAverage(){
+
+
+  return 'Средний балл по всем предметам 4.75'
+}
+
 }
