@@ -6,18 +6,14 @@ class AlarmClock {
     }
 
     addClock(time, callback, id) {
-        this.time = time;
-        this.callback = callback;
-        this.id = id;
         if (!id) {
             throw new Error('Вы забыли передать id');
         }
 
-        if (this.alarmCollection.some((value) => value === id)) {
+        if (this.alarmCollection.some((value) => value.id === id)) {
             console.error('Такой звонок уже существует');
-        } else {
-            this.alarmCollection.push(id);
-        }
+            return;
+        } 
 
         this.alarmCollection.push({
             time: time,
@@ -27,8 +23,10 @@ class AlarmClock {
     }
 
     removeClock(id) {
-        if (this.alarmCollection.findIndex((item) => item === id)) {
-            this.alarmCollection.splice(item, 1);
+        let index = this.alarmCollection.findIndex((item) => item.id === id);
+
+        if (index !== -1) {
+            this.alarmCollection.splice(index, 1);
             return true;
         } else {
             return false;
@@ -42,29 +40,32 @@ class AlarmClock {
         });
     }
 
-
-
     start() {
         function checkClock(ring) {
-            if ((ring) => this.time === this.getCurrentFormattedTime()) {
-                return ring.callback();
+            let checkClockBind = checkClock.bind(this)
+            if (this.time === this.getCurrentFormattedTime()) {
+                ring.callback();
             }
         }
-        if (!this.id) {
-            const interval = setInterval(() => this.alarmCollection.forEach((ring) => checkClock()));
+        if (!this.timerId) {
+            this.timerId = setInterval(() => this.alarmCollection.forEach((ring) => checkClockBind(ring)), 2000);
         }
     }
 
-
-
+    stop(){
+        if(this.timerId){
+          clearInterval(this.timerId);
+          this.timerId = null;
+        }
+    }
 
     printAlarms() {
         this.alarmCollection.forEach((item) => console.log(item.id, item.time));
     }
 
-
-    clearAlarms(){
+    clearAlarms() {
         this.stop();
-        this.alarmCollection.splice(0,this.alarmCollection.length);
-  }
+        this.alarmCollection = [];
+    }
+
 }
