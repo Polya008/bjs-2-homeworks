@@ -42,11 +42,11 @@ class AlarmClock {
 
     start() {
         function checkClock(ring) {
-            let checkClockBind = checkClock.bind(this)
-            if (this.time === this.getCurrentFormattedTime()) {
+         if (this.time === this.getCurrentFormattedTime()) {
                 ring.callback();
             }
         }
+        let checkClockBind = checkClock.bind(this);
         if (!this.timerId) {
             this.timerId = setInterval(() => this.alarmCollection.forEach((ring) => checkClockBind(ring)), 2000);
         }
