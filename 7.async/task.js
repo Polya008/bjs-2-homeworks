@@ -42,7 +42,7 @@ class AlarmClock {
 
     start() {
         function checkClock(ring) {
-         if (this.time === this.getCurrentFormattedTime()) {
+         if (ring.time === this.getCurrentFormattedTime()) {
                 ring.callback();
             }
         }
