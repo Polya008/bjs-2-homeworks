@@ -17,7 +17,9 @@ set state(value){
     return this._state = 0;
   } else if (value >= 100) {
     return this._state = 100;
-  } 
+  } else {
+    return this._state = value;
+  }
 }
 
 get state() {
@@ -83,68 +85,57 @@ findBookBy(type, value) {
   }
 }
 
-
 giveBookByName(bookName) {
 let searchingBook = this.books.findIndex((item) => item.name === bookName);
-if(searchingBook != -1){
-    this.books.splice(searchingBook,1);
+ if(searchingBook != -1){
+   return this.books.splice(searchingBook,1)[0];
 } else {
   return null;
  }
 }
-
-/*giveBookByName(bookName) {
-if(this.name === bookName){
-    this.books.findIndex((item) => this.books.splice(item,1));
-} else {
-  return 'null';
- }
-}*/
 
 }
 //Задание 3
 class Student {
   constructor(name) {
    this.name = name;
+   this.marks = {};
  }
 
  addMark(mark, discipline){
-   this.discipline = {};
-   this.discipline.discipline = discipline;
-   this.discipline.mark = [];
-
-   if(Object.keys(this.discipline.discipline) !== []){
-     this.discipline.mark.push(mark);
-   }
-
-
-  if(Object.values(this.discipline.mark) === []){
-     this.discipline.mark = [mark];
-   } else {
-     this.discipline.mark.push(mark);
-   }
+  if(!(discipline in this.marks)){
+    this.marks[discipline] = [];
+ } 
    
-   if(mark > 5) {
+   if(mark <= 5){
+   this.marks[discipline].push(mark);
+   } else if(mark > 5) {
     return 'Ошибка, оценка должна быть числом от 1 до 5';
   }
-
-
 }
 
-getAverageBySubject(value){
-  let sum = (this.discipline.filter((item) => item === value)).reduce((a,b) => a + b, x = 0);
-  let getAverageBySubject = sum / this.discipline.length;
-   return `Средний балл по предмету ${value} : ${getAverageBySubject}`;
- 
- if(this.discipline.some((value) => value === undefined)) {
-  return 'Несуществующий предмет';
+getAverageBySubject(discipline) {
+    for (let key in this.marks) {
+        if (this.marks.hasOwnProperty(key)) {
+            let sum = (this.marks[discipline].reduce((a, b) => a + b));
+            let getAverageBySubject = sum / this.marks[discipline].length;
+            return `Средний балл по предмету ${discipline} : ${getAverageBySubject}`;
+        } else {
+            return 'Несуществующий предмет';
+        }
+    }
 }
+getAverage() {
+    const arrOfMarks = Object.values(this.marks).reduce((a, b) => a.concat(b));
+    let getAverage = arrOfMarks.reduce((a, b) => a + b) / arrOfMarks.length;
+    return `Средний балл по всем предметам ${getAverage}`;
 }
 
-getAverage(){
 
-
-  return 'Средний балл по всем предметам 4.75'
+exclude(reason) {
+    if (reason === "Исключен за попытку подделать оценки") {
+        for (let student in this) delete this[student];
+    }
 }
 
 }
